@@ -1,0 +1,48 @@
+# dependencies
+/node_modules
+/.pnp
+.pnp.*
+.yarn/*
+
+# testing
+/coverage
+
+# next.js
+/.next/
+/out/
+next-env.d.ts
+
+# production
+/build
+/dist
+
+# misc
+.DS_Store
+*.pem
+Thumbs.db
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# env files
+.env
+.env*.local
+!.env.example
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+
+# claude code (keep shared config, ignore local overrides)
+.claude/settings.local.json
+.claude/state/
+CLAUDE.local.md
+
+# `vercel link` appends its own `.vercel` and `.env*` rules here. Both are
+# already covered above, and a bare `.env*` landing after the `!.env.example`
+# negation would silently re-ignore the example file — so they are not repeated.

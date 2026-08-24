@@ -1,0 +1,342 @@
+/* Self-hosted variable fonts (Fontsource) — no external Google Fonts request,
+   so the site works offline, on locked-down networks, and is GDPR-friendly.
+   Sora carries the headings, Plus Jakarta Sans the body, Fira Code the numerals. */
+@import '@fontsource-variable/sora';
+@import '@fontsource-variable/plus-jakarta-sans';
+@import '@fontsource-variable/fira-code';
+@import 'tailwindcss';
+
+/* ───────────────────────────────────────────────────────────
+   Design tokens — Tailwind v4 `@theme`
+   Change the brand colours here and the whole site follows.
+
+   Identity: emerald/teal primary with a warm gold accent, sitting on a
+   deep carbon-green surface. Nothing in a component should ever hard-code
+   a hex — always reach for brand-* / accent-* / ink-* / the semantic tokens.
+   ─────────────────────────────────────────────────────────── */
+@theme {
+  /* Carbon ramp — the dark chrome. Very slightly green so the emerald
+     brand reads as intentional rather than pasted onto neutral grey. */
+  --color-ink-950: #050a09;
+  --color-ink-900: #070d0c;
+  --color-ink-850: #0a1312;
+  --color-ink-800: #0f1a18;
+  --color-ink-700: #182724;
+
+  /* Brand — emerald into teal */
+  --color-brand-50: #ecfdf5;
+  --color-brand-100: #d1fae5;
+  --color-brand-200: #a7f3d0;
+  --color-brand-300: #6ee7b7;
+  --color-brand-400: #34d399;
+  --color-brand-500: #10b981;
+  --color-brand-600: #059669;
+  --color-brand-700: #047857;
+
+  /* Accent — warm gold, the counterweight to all that green */
+  --color-accent-300: #fcd34d;
+  --color-accent-400: #fbbf24;
+  --color-accent-500: #f59e0b;
+  --color-accent-600: #d97706;
+
+  /* Semantic tokens — these are the ones that flip between themes.
+     Everything else (ink-*, brand gradients) stays put in both. */
+  --color-fg: #f2f7f5; /* headings and primary text          */
+  --color-surface: #050a09; /* page background                     */
+  --color-surface-2: #0a1312; /* cards, drawers, image placeholders  */
+  --color-line: color-mix(in oklab, white 10%, transparent); /* hairline borders */
+  --color-line-strong: color-mix(in oklab, white 32%, transparent); /* hover borders    */
+  --color-tint: color-mix(in oklab, white 5%, transparent); /* subtle fills     */
+  --color-tint-strong: color-mix(in oklab, white 9%, transparent); /* tracks, hover, inputs */
+  /* Card fill. Separate from --color-tint because in light mode cards want to be
+     solid white lifting off a tinted page, while hover tints stay translucent. */
+  --glass-bg: color-mix(in oklab, white 4%, transparent);
+  --color-onbrand: #04120d; /* text on a saturated brand gradient — never flips.
+                               Emerald and gold are both LIGHT fills, so this is
+                               near-black, not white. Getting this wrong is the
+                               single easiest way to break contrast site-wide. */
+  /* Warning accent. Kept separate from accent-400 because that step is also a
+     Skills tile fill carrying near-black text, so it must NOT darken. */
+  --color-warn: #fb923c;
+
+  --font-sans:
+    'Plus Jakarta Sans Variable', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto,
+    sans-serif;
+  --font-display:
+    'Sora Variable', 'Plus Jakarta Sans Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'Fira Code Variable', ui-monospace, Menlo, Consolas, monospace;
+
+  --animate-marquee: marquee 42s linear infinite;
+  --animate-float: float 7s ease-in-out infinite;
+  --animate-aurora: aurora 20s ease-in-out infinite;
+  --animate-shimmer: shimmer 2.5s linear infinite;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+@keyframes aurora {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1) rotate(0deg);
+  }
+  33% {
+    transform: translate(36px, -28px) scale(1.1) rotate(6deg);
+  }
+  66% {
+    transform: translate(-28px, 22px) scale(0.93) rotate(-5deg);
+  }
+}
+
+@keyframes shimmer {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
+}
+
+/* ─────────────────────────  Base  ───────────────────────── */
+:root {
+  color-scheme: dark;
+  --nav-height: 4.5rem;
+
+  /* Stops for the `text-gradient` utility — overridden in the light theme. */
+  --tg-from: var(--color-brand-300);
+  --tg-mid: var(--color-brand-500);
+  --tg-to: var(--color-accent-400);
+
+  /* ── Text ramp (dark theme) ──────────────────────────────────
+     Tailwind's stock slate ramp is both too blue for this green-carbon
+     surface and too dim at the quiet end — slate-500 measured 4.0:1 and
+     slate-600 only 2.5:1, so labels, hints and the tech marquee were
+     genuinely hard to read. These are green-neutral greys, each one
+     measured against --color-surface (#050a09):
+
+       400 → 10.8:1   body copy
+       500 →  8.0:1   hints, labels, meta
+       600 →  5.9:1   marquee, disabled states
+
+     slate-100 is the BRIGHTEST step here. The light theme below reverses
+     that ordering — keep the two in step if you retune either. */
+  --color-slate-100: #f2f7f5;
+  --color-slate-200: #e4ece9;
+  --color-slate-300: #d3ded9;
+  --color-slate-400: #b5c3be;
+  --color-slate-500: #96a8a2;
+  --color-slate-600: #7e908a;
+  --color-slate-700: #5f706b;
+}
+
+/* ───────────────────────  Light theme  ─────────────────────
+   Tailwind v4 emits utilities as `var(--color-…)`, so overriding the
+   token here re-colours every `text-slate-400`, `bg-surface`, … at
+   runtime — no duplicate `dark:` class on every element.
+
+   The slate ramp is deliberately REVERSED: in the dark theme slate-100
+   is the brightest text and slate-500 the faintest, so in the light
+   theme slate-100 must be the darkest and slate-500 the faintest again.
+   Keep that ordering if you retune these values.
+   ─────────────────────────────────────────────────────────── */
+[data-theme='light'] {
+  color-scheme: light;
+
+  --color-fg: #08140f;
+  --color-surface: #f4f8f5;
+  --color-surface-2: #ffffff;
+  --color-line: color-mix(in oklab, #08140f 12%, transparent);
+  --color-line-strong: color-mix(in oklab, #08140f 30%, transparent);
+  --color-tint: color-mix(in oklab, #08140f 4%, transparent);
+  --color-tint-strong: color-mix(in oklab, #08140f 8%, transparent);
+  --glass-bg: #ffffff;
+
+  /* Same ramp, reversed: slate-100 is the DARKEST step in the light theme.
+     Measured against --color-surface (#f4f8f5) — 400 → 8.4:1, 500 → 6.5:1,
+     600 → 5.0:1, so even the quietest label clears the 4.5:1 floor. */
+  --color-slate-100: #06120d;
+  --color-slate-200: #10201a;
+  --color-slate-300: #1e2f28;
+  --color-slate-400: #35473f;
+  --color-slate-500: #47594f;
+  /* The faintest step, used for the decorative tech marquee and disabled
+     buttons. Still kept above the body-text floor. */
+  --color-slate-600: #5b6d63;
+  --color-slate-700: #c4d0ca;
+
+  /* Emerald at 200–400 is unreadable on a light background — these are used
+     as accent TEXT, so they darken. 500/600 stay put: they are gradient
+     fills carrying near-black text, and darkening them would muddy the brand. */
+  --color-brand-50: #064e3b;
+  --color-brand-100: #065f46;
+  --color-brand-200: #045d43;
+  --color-brand-300: #047857;
+  --color-brand-400: #036b4c;
+
+  /* Gold is the worst offender on white — amber-300/400 sit near 1.5:1.
+     Every step below is text-only in this codebase; the Skills tiles use the
+     -400/-500 steps as bright FILLS behind near-black text, which is why
+     --color-warn is a separate token that can darken on its own. */
+  --color-accent-300: #92580a;
+  --color-accent-400: #a16207;
+  --color-emerald-300: #047857;
+  --color-rose-300: #be123c;
+
+  --color-warn: #b45309;
+
+  /* The heading gradient needs its own stops: brand-500 sits at ~2.2:1 on
+     this background, well under the 3:1 large-text floor. */
+  --tg-from: #047857;
+  --tg-mid: #065f46;
+  --tg-to: #a16207;
+}
+
+* {
+  border-color: var(--color-line);
+}
+
+html {
+  /* One number controls the whole type scale — Tailwind sizes and spacing
+     are rem-based, so everything grows together and nothing overflows. */
+  font-size: 16.5px;
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--nav-height);
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  background-color: var(--color-surface);
+  color: var(--color-slate-300);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease;
+}
+
+/* Sora is the display face — every heading picks it up without a utility class. */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-surface-2);
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--color-brand-500), var(--color-accent-500));
+  border-radius: 999px;
+  border: 2px solid var(--color-surface-2);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, var(--color-brand-400), var(--color-accent-400));
+}
+
+::selection {
+  background: color-mix(in oklab, var(--color-brand-500) 45%, transparent);
+  color: var(--color-fg);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-brand-400);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ───────────────────────  Utilities  ─────────────────────── */
+@utility container-page {
+  width: 100%;
+  margin-inline: auto;
+  max-width: 78rem;
+  padding-inline: 1.25rem;
+}
+
+@utility text-gradient {
+  background-image: linear-gradient(100deg, var(--tg-from), var(--tg-mid) 42%, var(--tg-to));
+  background-clip: text;
+  color: transparent;
+}
+
+@utility glass {
+  background-color: var(--glass-bg);
+  backdrop-filter: blur(14px);
+  border: 1px solid var(--color-line);
+}
+
+@utility glow-ring {
+  box-shadow:
+    0 0 0 1px color-mix(in oklab, var(--color-brand-400) 24%, transparent),
+    0 18px 50px -18px color-mix(in oklab, var(--color-brand-500) 50%, transparent);
+}
+
+/* Dot matrix rather than a ruled grid — the quiet visual signature of this site. */
+@utility dot-bg {
+  background-image: radial-gradient(var(--color-tint-strong) 1px, transparent 1px);
+  background-size: 26px 26px;
+}
+
+/* Thin gradient hairline used to open a section or divide a card. */
+@utility rule-gradient {
+  background-image: linear-gradient(
+    to right,
+    var(--color-brand-500),
+    var(--color-accent-500),
+    transparent
+  );
+}
+
+/* Print — used when a visitor prints the page or the /resume route */
+@media print {
+  nav,
+  footer,
+  .no-print {
+    display: none !important;
+  }
+  body {
+    background: white;
+    color: black;
+  }
+  .print-break {
+    break-inside: avoid;
+  }
+}

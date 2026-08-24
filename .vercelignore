@@ -1,0 +1,16 @@
+# Build output and dependencies — Vercel builds these itself
+.next
+node_modules
+out
+
+# Local env
+.env
+.env*.local
+
+# Editor / tooling
+.vscode
+.claude
+*.tsbuildinfo
+
+# Docs that do not need to ship
+CLAUDE.md
