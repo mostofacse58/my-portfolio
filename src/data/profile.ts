@@ -75,7 +75,7 @@ export const profile = {
     { value: '11+', label: 'Years Experience' }, // [P]
     { value: '18', label: 'ERP Modules Live' }, // [P] "All 18 modules delivered and live"
     { value: '5', label: 'Industry Domains' }, // [P] Army/Govt, Textile, Leather, Energy, IT
-    { value: '4', label: 'Flagship Products' }, // [P] "Featured Live Products"
+    { value: '6', label: 'Flagship Products' }, // matches the six featured cards below
   ],
 
   about: {

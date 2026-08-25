@@ -81,7 +81,7 @@ export default function Education() {
                       {item.inProgress ? (
                         <Chip variant="accent">In progress</Chip>
                       ) : (
-                        <Chip>{item.period}</Chip>
+                        item.period && <Chip>{item.period}</Chip>
                       )}
                       {item.duration && (
                         <Chip variant="brand">

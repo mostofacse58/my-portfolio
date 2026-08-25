@@ -40,13 +40,44 @@ export const education: EducationItem[] = [
 ];
 
 /* ────────────────────────────────────────────────────────────────────────────
- *  Certifications and training — the "Training" table of the same CV, newest
- *  first. `credentialId`, `url` and `inProgress` are unset because the CV
- *  records no certificate numbers, no verification links and no completion
- *  status; the UI drops each of those rather than showing a placeholder.
+ *  Certifications and training, newest first. The lower three come from the
+ *  "Training" table of the CV, which records no certificate numbers, no
+ *  verification links and no completion status — so `credentialId`, `url` and
+ *  `inProgress` are unset there and the UI drops each rather than showing a
+ *  placeholder.
+ *
+ *  The Hablu Programmer entry is the currently-running course
+ *  (hablu-programmer.com/courses/agent — this batch started 22 Aug 2026), so it
+ *  carries `inProgress` and renders an "In progress" chip in place of a year.
+ *
+ *  The BITM entry has no year on record — `period` is optional for exactly this
+ *  case and the card renders without a date chip rather than carrying a guessed
+ *  one. Add the year when Golam confirms it, and move the entry into date order.
  * ──────────────────────────────────────────────────────────────────────────── */
 
 export const training: TrainingItem[] = [
+  {
+    id: 'hablu-ai-agent-mastery',
+    title: 'AI Agent Mastery: Build, Automate & Scale',
+    provider: 'Hablu Programmer',
+    location: 'Online',
+    period: '2026',
+    duration: '6 months',
+    inProgress: true,
+    topics: [
+      'n8n',
+      'Langflow',
+      'LangChain',
+      'Claude AI',
+      'RAG systems',
+      'Multi-agent orchestration',
+      'Voice-enabled agents',
+      'Zapier',
+      'Make.com',
+      'CRM & e-commerce automation',
+      'Agent deployment & hosting',
+    ],
+  },
   {
     id: 'ph-ai-powered-web',
     title: 'AI Powered Complete Web Development',
@@ -104,5 +135,12 @@ export const training: TrainingItem[] = [
       'Testing',
       'Git',
     ],
+  },
+  {
+    id: 'bitm-android-development',
+    title: 'Android Mobile Application Development',
+    provider: 'BASIS Institute of Technology & Management (BITM)',
+    location: 'Dhaka',
+    duration: '6 months',
   },
 ];

@@ -13,7 +13,7 @@ export default function Projects() {
           index="04"
           eyebrow="Projects"
           title="Selected work"
-          description="A live SaaS product, an enterprise Epicor rollout, and an 18-module ERP suite running in production. Open any card for the full story."
+          description="A live SaaS product, an enterprise Epicor rollout, an 18-module ERP suite, a biometric kiosk platform and a real-time factory dashboard — all running in production. Open any card for the full story."
         />
 
         <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">

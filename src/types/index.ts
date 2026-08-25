@@ -84,8 +84,9 @@ export type TrainingItem = {
   provider?: string;
   /** Where it ran, e.g. 'Banani, Dhaka'. Omitted for remote or unrecorded. */
   location?: string;
-  /** Year or range exactly as it appears on the certificate. */
-  period: string;
+  /** Year or range exactly as it appears on the certificate. Omitted where the
+   *  year is not recorded — the card then renders no date chip at all. */
+  period?: string;
   /** Length of the course, e.g. '6 months'. Omitted where not recorded. */
   duration?: string;
   /** Syllabus, rendered as chips. Absent or empty renders no chip row. */
@@ -111,6 +112,7 @@ export type ProjectCategory =
   | 'SaaS Product'
   | 'Web App'
   | 'Mobile App'
+  | 'Desktop App'
   | 'Implementation';
 
 export type Project = {

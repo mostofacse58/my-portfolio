@@ -219,8 +219,9 @@ export default function ResumePage() {
                     <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
                       <h3 className="text-fg text-sm font-semibold">{item.title}</h3>
                       <span className="font-mono text-xs text-slate-500">
-                        {item.inProgress ? 'In progress' : item.period}
-                        {item.duration && ` · ${item.duration}`}
+                        {[item.inProgress ? 'In progress' : item.period, item.duration]
+                          .filter(Boolean)
+                          .join(' · ')}
                       </span>
                     </div>
                     {item.provider && (
