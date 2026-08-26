@@ -123,7 +123,7 @@ export default function ContactForm() {
       <button
         type="submit"
         disabled={status === 'sending'}
-        className="from-brand-500 to-accent-500 shadow-brand-500/20 text-onbrand mt-6 inline-flex w-full items-center justify-center gap-2.5 rounded-xl bg-gradient-to-r px-6 py-3.5 text-sm font-semibold shadow-lg transition-all hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
+        className="btn-primary shadow-brand-700/20 mt-6 inline-flex w-full items-center justify-center gap-2.5 rounded-xl px-6 py-3.5 text-sm font-semibold shadow-lg transition-all disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
       >
         {status === 'sending' ? (
           <>

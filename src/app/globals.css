@@ -291,6 +291,27 @@ h6 {
   padding-inline: 1.25rem;
 }
 
+/* The single primary-action fill. Every button that performs the page's main
+   action uses this and nothing else — one flat brand colour rather than the
+   emerald-to-gold gradient, which read as decorative rather than clickable.
+
+   brand-700 is deliberate: white on #047857 measures 4.8:1, which clears AA for
+   normal text, where white on brand-500 or brand-600 does not. It also sits
+   OUTSIDE the 50–400 range that globals.css darkens for the light theme, so the
+   button is the same colour in both themes instead of shifting under the user.
+
+   The emerald-to-gold gradient is still the brand, and still carries the
+   decorative icon tiles, the timeline spine and the skill bars. It is only the
+   buttons that stopped using it. */
+@utility btn-primary {
+  background-color: var(--color-brand-700);
+  color: #ffffff;
+
+  &:hover {
+    background-color: var(--color-brand-600);
+  }
+}
+
 @utility text-gradient {
   background-image: linear-gradient(100deg, var(--tg-from), var(--tg-mid) 42%, var(--tg-to));
   background-clip: text;

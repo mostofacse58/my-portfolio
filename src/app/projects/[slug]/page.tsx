@@ -100,7 +100,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
                 href={project.liveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="from-brand-500 to-accent-500 shadow-brand-500/25 text-onbrand inline-flex items-center gap-2.5 rounded-xl bg-gradient-to-r px-6 py-3.5 text-sm font-semibold shadow-lg transition-all hover:-translate-y-0.5 hover:brightness-110"
+                className="btn-primary shadow-brand-700/25 inline-flex items-center gap-2.5 rounded-xl px-6 py-3.5 text-sm font-semibold shadow-lg transition-all hover:-translate-y-0.5"
               >
                 <FaUpRightFromSquare className="h-4 w-4" />
                 View live project
@@ -264,7 +264,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
             </p>
             <Link
               href="/#contact"
-              className="from-brand-500 to-accent-500 text-onbrand inline-flex items-center gap-2.5 rounded-xl bg-gradient-to-r px-6 py-3.5 text-sm font-semibold transition-all hover:brightness-110"
+              className="btn-primary inline-flex items-center gap-2.5 rounded-xl px-6 py-3.5 text-sm font-semibold transition-all"
             >
               Get in touch
               <FaArrowRight className="h-3.5 w-3.5" />

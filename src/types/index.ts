@@ -16,8 +16,9 @@ export type SocialLink = {
 /**
  * A single self-assessed proficiency bar.
  *
- * `level` is only ever set where Golam has published a number himself —
- * see the note at the top of `src/data/skills.ts`.
+ * `coreSkills` carries the eight levels Golam publishes himself; the levels
+ * inside `skillGroups` were drafted for him to correct — see the note at the
+ * top of `src/data/skills.ts` before treating any of them as his word.
  */
 export type Skill = {
   name: string;
@@ -33,6 +34,19 @@ export type TechGroup = {
   /** Tailwind gradient stops, e.g. 'from-brand-400 to-teal-500' */
   gradient: string;
   items: string[];
+};
+
+/**
+ * A named group of technologies, each carrying a self-assessed level so the
+ * group renders as a stack of bars rather than a chip cloud.
+ */
+export type SkillGroup = {
+  id: string;
+  title: string;
+  icon: IconType;
+  /** Tailwind gradient stops for the icon tile — see the note in skills.ts. */
+  gradient: string;
+  skills: Skill[];
 };
 
 export type ServiceItem = {

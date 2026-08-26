@@ -1,7 +1,7 @@
 import Reveal from '@/components/ui/Reveal';
 import SectionHeading from '@/components/ui/SectionHeading';
 import SkillBar from '@/components/ui/SkillBar';
-import { coreSkills, techGroups } from '@/data/skills';
+import { skillGroups } from '@/data/skills';
 
 export default function Skills() {
   return (
@@ -10,39 +10,16 @@ export default function Skills() {
         <SectionHeading
           index="02"
           eyebrow="Skills"
-          title="What I am strongest at"
-          description="The bars are my own assessment, ordered honestly — architecture and the .NET/SQL Server core first, the newer stack further down. Underneath is the full toolkit, without the scoring."
+          title="The toolkit"
+          description="Grouped by where it lives in the stack. The bars are my own assessment, ordered honestly — the ones I would happily be interviewed on are at the top of each list."
         />
 
-        {/* Core proficiency */}
-        <Reveal>
-          <div className="glass rounded-2xl p-7 sm:p-9">
-            <div className="flex flex-wrap items-baseline justify-between gap-3">
-              <h3 className="text-fg text-xl font-semibold">Core proficiency</h3>
-              <span className="font-mono text-xs text-slate-500">self-assessed</span>
-            </div>
-            <div className="rule-gradient mt-4 h-px w-20" aria-hidden />
-
-            <div className="mt-8 grid gap-x-10 gap-y-6 md:grid-cols-2">
-              {coreSkills.map((skill, i) => (
-                <SkillBar
-                  key={skill.name}
-                  name={skill.name}
-                  level={skill.level}
-                  delay={(i % 2) * 0.08}
-                />
-              ))}
-            </div>
-          </div>
-        </Reveal>
-
-        {/* Toolkit */}
-        <div className="mt-6 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-          {techGroups.map((group, index) => {
+        <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+          {skillGroups.map((group, index) => {
             const Icon = group.icon;
             return (
-              <Reveal key={group.id} delay={(index % 3) * 0.06}>
-                <div className="glass group hover:border-brand-400/25 h-full rounded-2xl p-6 transition-all hover:-translate-y-1">
+              <Reveal key={group.id} delay={(index % 4) * 0.06}>
+                <div className="glass hover:border-brand-400/25 h-full rounded-2xl p-6 transition-all hover:-translate-y-1">
                   <div className="flex items-center gap-3">
                     <span
                       className={`grid h-11 w-11 place-items-center rounded-xl bg-gradient-to-br ${group.gradient} text-ink-950 shadow-lg`}
@@ -52,16 +29,16 @@ export default function Skills() {
                     <h3 className="text-fg text-base font-semibold">{group.title}</h3>
                   </div>
 
-                  <ul className="mt-5 flex flex-wrap gap-1.5">
-                    {group.items.map((item) => (
-                      <li
-                        key={item}
-                        className="border-line bg-tint rounded-md border px-2.5 py-1 font-mono text-xs text-slate-400"
-                      >
-                        {item}
-                      </li>
+                  <div className="mt-6 space-y-4">
+                    {group.skills.map((skill, i) => (
+                      <SkillBar
+                        key={skill.name}
+                        name={skill.name}
+                        level={skill.level}
+                        delay={i * 0.04}
+                      />
                     ))}
-                  </ul>
+                  </div>
                 </div>
               </Reveal>
             );

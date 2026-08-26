@@ -31,7 +31,7 @@ type ResumeButtonProps = {
 
 const variants = {
   primary:
-    'from-brand-500 to-accent-500 shadow-brand-500/25 hover:shadow-brand-500/40 text-onbrand bg-gradient-to-r shadow-lg hover:-translate-y-0.5 hover:brightness-110',
+    'btn-primary shadow-brand-700/25 hover:shadow-brand-700/40 shadow-lg hover:-translate-y-0.5',
   ghost: 'glass hover:border-brand-400/40 hover:text-fg text-slate-200 hover:-translate-y-0.5',
   soft: 'border-brand-500/30 bg-brand-500/10 text-brand-200 hover:bg-brand-500/20 border',
 };

@@ -12,7 +12,7 @@ export default function NotFound() {
         </p>
         <Link
           href="/"
-          className="from-brand-500 to-accent-500 text-onbrand mt-8 inline-flex items-center gap-2.5 rounded-xl bg-gradient-to-r px-6 py-3.5 text-sm font-semibold transition-all hover:brightness-110"
+          className="btn-primary mt-8 inline-flex items-center gap-2.5 rounded-xl px-6 py-3.5 text-sm font-semibold transition-all"
         >
           <FaArrowLeft className="h-3.5 w-3.5" />
           Back to portfolio

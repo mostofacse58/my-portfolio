@@ -67,7 +67,7 @@ export default function ProjectCard({ project }: { project: Project }) {
         <div className="border-line mt-6 flex items-center justify-between gap-3 border-t pt-5">
           <Link
             href={`/projects/${project.slug}`}
-            className="group/btn from-brand-500 to-accent-500 text-onbrand inline-flex items-center gap-2 rounded-xl bg-gradient-to-r px-4 py-2.5 text-xs font-semibold transition-all hover:brightness-110"
+            className="group/btn btn-primary inline-flex items-center gap-2 rounded-xl px-4 py-2.5 text-xs font-semibold transition-all"
           >
             View Details
             <FaArrowRight className="h-3 w-3 transition-transform group-hover/btn:translate-x-0.5" />
