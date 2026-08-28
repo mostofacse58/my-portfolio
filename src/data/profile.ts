@@ -48,24 +48,30 @@ export const profile = {
   phone: '01723695251',
   /** Same number in dialable international form, for tel: and WhatsApp links. */
   phoneIntl: '+8801723695251',
-  website: 'https://gtechsoft.xyz/', // [P]
-  websiteLabel: 'gtechsoft.xyz',
+  /**
+   * gtechsoft.xyz is registered and its DNS resolves, but nothing is served
+   * there — HTTPS does not respond and HTTP returns 404. It was linked from the
+   * footer, the contact card and the social row, so three dead links. Pointed
+   * at this site until the domain actually serves, then put it back.
+   */
+  website: 'https://golammostofa.vercel.app',
+  websiteLabel: 'golammostofa.vercel.app',
   currentEmployer: 'Ventura Leatherware Mfy (BD) Ltd.', // [G] profile `company` field
 
   yearsOfExperience: 11, // [P] "11+ Years"; [CV] "Total Year of Experience: 11.8 yrs"
 
   /**
-   * No PDF has been published to the site yet. Rather than ship a dead download
-   * button, the "Resume" call to action points at /resume — a print-optimised
-   * page built from this same data layer, which any browser can save as a PDF.
+   * The full CV, generated from this data layer — see scripts note in
+   * CLAUDE.md §6. Because this is set, every ResumeButton on the site is a
+   * direct download rather than a link to /resume; that page still exists and
+   * still renders from the same data, so the two cannot contradict each other.
    *
-   * To switch to a real file: drop it in /public/resume/ and set this to the
-   * path. Every resume button picks it up automatically.
+   * Regenerate after changing projects, skills, education or experience.
    */
-  resumeFile: null as string | null,
+  resumeFile: '/resume/Golam-Mostofa-CV.pdf' as string | null,
   resumePath: '/resume',
 
-  /** Hero portrait — his own avatar, background removed so the card shows through. */
+  /** Hero portrait — studio headshot, cropped 4:5 for the hero frame. */
   photo: '/images/profile.webp',
   /** Same headshot on a solid background, for structured data and rich cards. */
   photoSolid: '/images/profile.jpg',

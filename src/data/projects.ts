@@ -7,8 +7,9 @@ import type { Project } from '@/types';
  *  page renders without that section. Nothing here is padded out with invented
  *  bullet points, fabricated metrics, or challenges he never described.
  *
- *  `liveUrl` is set only for the two products with a public URL he links to
- *  himself (maatdrive.com, gtechsoft.xyz). Everything else is closed client or
+ *  `liveUrl` is set only where there is a public URL that actually resolves —
+ *  today that is maatdrive.com alone, since gtechsoft.xyz serves nothing.
+ *  Everything else is closed client or
  *  in-house work, so it renders a disabled button with an explanation instead
  *  of a broken link.
  *
@@ -42,6 +43,11 @@ import type { Project } from '@/types';
  *  construction progress, hand-over) are NOT in the brochure and remain
  *  drafted, as does the Laravel/MySQL stack — the brochure states only that
  *  the platform is web-based and cloud-hosted.
+ *
+ *  The module lists on Inventory Management, HRMS & Payroll and Production MES
+ *  are drafted too — they are the standard shape of those modules in a
+ *  manufacturing ERP, written so the CV has something concrete to show, and
+ *  they need Golam's eye before the site goes to anyone.
  *
  *  The Restaurant POS feature set follows iRestora PLUS (codecanyon.net item
  *  23033741), which Golam gave as the reference for what his own system does —
@@ -211,7 +217,8 @@ export const projects: Project[] = [
       'GTechSoft is the software development venture I founded and built, delivering custom web applications, ERP systems and SaaS solutions for clients across different industries and markets.',
       'It is where work that does not belong to a single employer lives — product builds like MaatDrive, smaller client systems, and the consulting engagements that come out of eleven years spent inside other people’s factories.',
     ],
-    liveUrl: 'https://gtechsoft.xyz/',
+    liveUrl: null,
+    liveNote: 'gtechsoft.xyz is not serving yet',
     githubUrl: null,
     privateRepo: true,
     repoNote: 'Client work — closed source',
@@ -782,6 +789,17 @@ export const projects: Project[] = [
       'Inventory Management is the stock and store-control module of the ERP suite — the system of record for what the operation physically holds.',
       SUITE_CONTEXT,
     ],
+    features: [
+      'Item master with categories, units of measure and multi-store locations',
+      'Goods receipt against purchase order, with inspection and rejection',
+      'Issue, inter-store transfer and return with approval',
+      'Batch and lot tracking where the material demands it',
+      'Physical stock count and adjustment with an approval trail',
+      'Re-order level alerts and stock ageing',
+      'Stock valuation and a running ledger per item',
+      'Barcode-driven receipt and issue on the store counter',
+      'Store-wise, item-wise and movement reporting with Excel and PDF export',
+    ],
     liveUrl: null,
     githubUrl: null,
     privateRepo: true,
@@ -803,6 +821,17 @@ export const projects: Project[] = [
       'HRMS and Payroll is one of the modules I have built and maintained repeatedly across my career — for leather manufacturing, energy and textile companies, and inside the in-house ERP suite.',
       'Payroll is the module with the least tolerance for error in any factory system: it runs to a fixed calendar, every figure is checked by the person it belongs to, and a defect is visible to the entire workforce the same day.',
     ],
+    features: [
+      'Employee master with department, designation, grade and posting history',
+      'Device-based attendance capture with shift and roster handling',
+      'Leave types, entitlement, application and multi-level approval',
+      'Overtime capture and approval against production shifts',
+      'Monthly payroll with earnings, deductions and arrears',
+      'Provident fund, tax, loan and advance handling',
+      'Payslip generation and bank disbursement file output',
+      'Final settlement and gratuity calculation',
+      'Statutory and management reporting through SSRS',
+    ],
     liveUrl: null,
     githubUrl: null,
     privateRepo: true,
@@ -823,6 +852,16 @@ export const projects: Project[] = [
     description: [
       'The Production MES module covers manufacturing execution — production recorded on the floor rather than reconstructed afterwards from paperwork.',
       SUITE_CONTEXT,
+    ],
+    features: [
+      'Production orders and routing against work centres',
+      'Line-wise and workshop-wise output capture per shift',
+      'Plan versus actual efficiency tracking',
+      'Downtime and stoppage logging with reason codes',
+      'Rejection and rework capture against defect reasons',
+      'Work-in-progress tracking between process stages',
+      'Operator and line productivity reporting',
+      'Live production dashboards built on Apache ECharts',
     ],
     liveUrl: null,
     githubUrl: null,

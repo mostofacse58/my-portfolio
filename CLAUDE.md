@@ -127,8 +127,11 @@ matching `<section>` the same `id`. The active-link observer is automatic.
 
 ## 7. Known TODOs
 
-- [ ] Confirm `gtechsoft.xyz` resolves publicly — it did not respond during the build, and it is
-      linked from the footer, the contact card, the social row and the GTechSoft project.
+- [ ] Restore `gtechsoft.xyz` once it serves. Checked again at deploy time: DNS resolves to
+      95.216.113.114 but HTTPS does not respond and HTTP returns 404. The footer, contact card and
+      social row now point at https://golammostofa.vercel.app; the GTechSoft project's
+      `liveUrl` is `null` with a note, because a "View live project" button opening this same
+      site would be worse than a disabled one. Put all four back when the domain is live.
 - [x] Location confirmed as **Rangpur** — the CV gives Rangpur Sadar, Rangpur 5400 as his current
       location, which settles the Dhaka/Rangpur split. `profile.location` and the contact map link
       both point at Rangpur now.
@@ -142,7 +145,15 @@ matching `<section>` the same `id`. The active-link observer is automatic.
 - [ ] Add the Consultant Management System (anjapex.com) from the CV's "Accomplishment" section as
       a project — it needs a 1200×750 cover before it can go in.
 - [ ] Replace the generated project covers with real screenshots where the client permits it.
-- [ ] Ask Golam for a resume PDF, or leave the `/resume` page as the canonical version.
+- [x] CV PDF generated at `public/resume/Golam-Mostofa-CV.pdf` (6 pages, laid out like the
+      reference resume: header, objective, academics, skills table, numbered training, employment
+      history with "Projects Contributed", eight detailed key projects, proficiencies, references).
+      `profile.resumeFile` points at it, so every Resume button is now a direct download.
+      It is built from `src/data/` by a generator kept in the session scratchpad — regenerate it
+      after editing projects, skills, education or experience, or the PDF drifts from the site.
+- [ ] Decide whether the CV should carry date of birth. The reference resume has one; it is left
+      out here because the PDF is served publicly from `/public`, and CLAUDE.md rule 2 keeps DOB,
+      religion, marital status and blood group off the public site.
 - [x] Institution names and results added to `src/data/education.ts` from the CV, plus the SSC
       entry and a "Certifications & training" block driven by the `training` export.
 - [x] Deployed to Vercel as project `golammostofa` → https://golammostofa.vercel.app

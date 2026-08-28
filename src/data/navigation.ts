@@ -35,7 +35,7 @@ export const socialLinks: SocialLink[] = [
   },
   {
     label: 'GTechSoft',
-    href: 'https://gtechsoft.xyz/',
+    href: 'https://golammostofa.vercel.app',
     icon: FaGlobe,
     hoverClass: 'hover:border-brand-400/60 hover:text-brand-300',
   },
