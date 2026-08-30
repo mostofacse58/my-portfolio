@@ -12,12 +12,25 @@ export function cn(...classes: (string | false | null | undefined)[]): string {
  *   1. NEXT_PUBLIC_SITE_URL — set this once there is a custom domain.
  *   2. The domain Vercel injects, so a fresh deploy is already correct.
  *   3. Local dev.
+ *
+ * Each candidate is normalised rather than trusted. `??` alone is not enough:
+ * an env var that exists but is EMPTY is a string, not nullish, so it wins the
+ * coalesce and leaves siteUrl as '' — which took the Vercel build down with
+ * `new URL('')` → ERR_INVALID_URL while collecting /_not-found. A blank or
+ * whitespace value must be treated as absent, and a bare host must get a
+ * scheme, or `new URL` rejects it just the same.
  */
-const vercelDomain = process.env.VERCEL_PROJECT_PRODUCTION_URL ?? process.env.VERCEL_URL;
+function normaliseOrigin(value: string | undefined): string | undefined {
+  const trimmed = value?.trim().replace(/\/+$/, '');
+  if (!trimmed) return undefined;
+  return /^https?:\/\//i.test(trimmed) ? trimmed : `https://${trimmed}`;
+}
 
 export const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, '') ??
-  (vercelDomain ? `https://${vercelDomain}` : 'http://localhost:3002');
+  normaliseOrigin(process.env.NEXT_PUBLIC_SITE_URL) ??
+  normaliseOrigin(process.env.VERCEL_PROJECT_PRODUCTION_URL) ??
+  normaliseOrigin(process.env.VERCEL_URL) ??
+  'http://localhost:3002';
 
 export function absoluteUrl(path = ''): string {
   return `${siteUrl}${path.startsWith('/') ? path : `/${path}`}`;
