@@ -77,6 +77,61 @@ const SUITE_CONTEXT =
   'This module is part of the 18-module custom ERP suite I built and delivered across manufacturing and government sectors. All 18 modules are live in production.';
 
 export const projects: Project[] = [
+  /* LEATHER MANUFACTURING ERP — Golam asked for this to lead the project list.
+     Every claim is assembled from facts already on record elsewhere in the data
+     layer: the Ventura Leatherware roles in experience.ts (full-cycle ERP on the
+     leather floor, the RESTful API layer, Laravel/Vue.js/React/SQL Server,
+     Power BI reporting), the module list of the 18-module suite below, and his
+     own tagline in profile.ts (HRMS, Payroll, Production, Finance and Costing).
+     No client name beyond his employer, no user counts, no figures. */
+  {
+    slug: 'leather-manufacturing-erp',
+    name: 'Leather Manufacturing ERP',
+    tagline:
+      'The ERP a leather goods factory runs on — HRMS and payroll, production, inventory, finance and costing in one system.',
+    image: '/images/projects/leather-erp.png',
+    category: 'ERP System',
+    featured: true,
+    role: 'ERP Architect & Lead Developer',
+    timeline: 'Live in production',
+    mainTech: ['ASP.NET Core', 'Laravel', 'SQL Server', 'Vue.js'],
+    techStack: [
+      'ASP.NET Core',
+      'C#',
+      'Dapper ORM',
+      'SQL Server',
+      'PHP Laravel',
+      'Vue.js',
+      'React',
+      'REST API',
+      'SSRS',
+      'Power BI',
+    ],
+    shortDescription:
+      'The in-house ERP of a leather goods manufacturer — from the people on the floor and their pay, through production and stock, to the costing and financial reports management runs on.',
+    description: [
+      'Since 2017 I have worked inside Ventura Leatherware, a leather goods manufacturer in Bangladesh’s export processing zones — first on the plant databases and reporting, and since 2021 leading ERP development and architecture. This entry is the system that work adds up to: the ERP the factory actually runs on.',
+      'A leather factory is a hard place for software. Headcount is large and shift-based, so HRMS and payroll have to be exact every month. Material moves through many hands between the store and the finished bag, so production, inventory and gate movements have to agree with each other. And costing has to be defensible, because it is what export pricing is built on.',
+      'The system covers that whole chain — HRMS and payroll, production and MES, inventory and assets, maintenance, finance and costing, internal audit and approvals — behind a RESTful API layer, with management reporting on top. It sits alongside the Epicor ERP implementation I also led at the same company.',
+    ],
+    features: [
+      'HRMS & Payroll',
+      'Production & MES',
+      'Inventory & Assets',
+      'TPM (Total Productive Maintenance)',
+      'Finance & Costing',
+      'Internal Audit',
+      'Gate Pass',
+      'eSignature approvals',
+      'RESTful API layer',
+      'Management reporting (SSRS & Power BI)',
+    ],
+    liveUrl: null,
+    githubUrl: null,
+    privateRepo: true,
+    liveNote: 'In-house system — no public URL',
+    repoNote: 'Employer system — closed source',
+  },
   {
     slug: 'maatdrive-saas-platform',
     name: 'MaatDrive — Business Management SaaS',
@@ -197,7 +252,7 @@ export const projects: Project[] = [
     tagline: 'My own software venture: custom web applications, ERP systems and SaaS for clients.',
     image: '/images/projects/gtechsoft.png',
     category: 'Web App',
-    featured: true,
+    featured: false,
     role: 'Founder & Lead Engineer',
     timeline: 'Ongoing',
     mainTech: ['Laravel', 'Next.js', 'ASP.NET Core', 'MySQL'],

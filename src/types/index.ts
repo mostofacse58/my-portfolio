@@ -167,3 +167,27 @@ export type Project = {
    */
   repoNote?: string;
 };
+
+/** One verifiable certificate, grouped on the page by `issuer`. */
+export type CertificateItem = {
+  id: string;
+  title: string;
+  /** Awarding body — certificates are grouped under this heading. */
+  issuer: string;
+  /** Short qualifier shown as a chip, e.g. 'Skill certificate'. Optional. */
+  level?: string;
+  /** Issue date exactly as printed on the certificate, e.g. '30 Sep 2026'. */
+  issued: string;
+  /** Machine-readable form of `issued` for <time dateTime>. */
+  issuedIso: string;
+  /** What the certificate covers, rendered as chips. */
+  skills: string[];
+  /** Certificate / credential number as printed. Optional. */
+  credentialId?: string;
+  /** Public verification page on the issuer's site. */
+  verifyUrl: string;
+  /** Thumbnail under /public — 1200 px wide. */
+  image: string;
+  /** Downloadable copy under /public. Optional; the button is dropped without it. */
+  file?: string;
+};

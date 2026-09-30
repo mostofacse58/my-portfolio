@@ -1,4 +1,4 @@
-import { FaFacebookF, FaGithub, FaGlobe, FaLinkedinIn } from 'react-icons/fa6';
+import { FaFacebookF, FaGithub, FaGlobe, FaLinkedinIn, FaWhatsapp } from 'react-icons/fa6';
 import type { NavLink, SocialLink } from '@/types';
 
 export const navLinks: NavLink[] = [
@@ -8,6 +8,7 @@ export const navLinks: NavLink[] = [
   { label: 'Experience', href: '#experience' },
   { label: 'Projects', href: '#projects' },
   { label: 'Education', href: '#education' },
+  { label: 'Certificates', href: '#certificates' },
   { label: 'Contact', href: '#contact' },
 ];
 
@@ -32,6 +33,12 @@ export const socialLinks: SocialLink[] = [
     href: 'https://www.facebook.com/golam.mostofa51',
     icon: FaFacebookF,
     hoverClass: 'hover:border-[#1877F2] hover:text-[#4A9BFF]',
+  },
+  {
+    label: 'WhatsApp',
+    href: 'https://wa.me/8801723695251',
+    icon: FaWhatsapp,
+    hoverClass: 'hover:border-[#25D366] hover:text-[#25D366]',
   },
   {
     label: 'GTechSoft',

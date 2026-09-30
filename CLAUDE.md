@@ -161,6 +161,11 @@ matching `<section>` the same `id`. The active-link observer is automatic.
 - [ ] Optionally add `RESEND_API_KEY` so the contact form actually delivers mail — until
       then the form logs the message and tells the sender to email him directly.
 
+- [ ] Identify `mostofa-portfolio/public/Golam_Mostofa_Certificate.pdf` — its text is vector
+      layers and could not be read, so it is not in `src/data/certificates.ts` yet.
+- [ ] Confirm the Leather Manufacturing ERP project (first in `projects.ts`). It is assembled only
+      from facts already on record, but the combined module list should get his sign-off.
+
 ## 8. Tone of voice
 
 First person, plain English, concrete. Prefer "18 modules delivered and live" over "leveraged

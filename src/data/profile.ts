@@ -48,6 +48,8 @@ export const profile = {
   phone: '01723695251',
   /** Same number in dialable international form, for tel: and WhatsApp links. */
   phoneIntl: '+8801723695251',
+  /** Same number on WhatsApp — Golam confirmed it for WhatsApp use. wa.me wants digits only. */
+  whatsapp: 'https://wa.me/8801723695251',
   /**
    * gtechsoft.xyz is registered and its DNS resolves, but nothing is served
    * there — HTTPS does not respond and HTTP returns 404. It was linked from the

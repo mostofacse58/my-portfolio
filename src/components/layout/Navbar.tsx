@@ -111,7 +111,7 @@ export default function Navbar() {
                   <Link
                     href={hrefFor(link.href)}
                     className={cn(
-                      'relative block px-3 py-2 text-sm font-medium transition-colors',
+                      'relative block px-2.5 py-2 text-sm font-medium transition-colors xl:px-3',
                       isActive ? 'text-fg' : 'hover:text-fg text-slate-400',
                     )}
                   >

@@ -6,6 +6,7 @@ import {
   FaLocationDot,
   FaPhone,
   FaQuoteLeft,
+  FaWhatsapp,
 } from 'react-icons/fa6';
 import Chip from '@/components/ui/Chip';
 import Reveal from '@/components/ui/Reveal';
@@ -18,6 +19,13 @@ const glance = [
   { label: 'Location', value: profile.location, icon: FaLocationDot },
   { label: 'Email', value: profile.email, icon: FaEnvelope, href: `mailto:${profile.email}` },
   { label: 'Phone', value: profile.phone, icon: FaPhone, href: `tel:${profile.phoneIntl}` },
+  {
+    label: 'WhatsApp',
+    value: profile.phone,
+    icon: FaWhatsapp,
+    href: profile.whatsapp,
+    external: true,
+  },
   {
     label: 'Website',
     value: profile.websiteLabel,
@@ -134,6 +142,46 @@ export default function About() {
                 </ul>
               </div>
             </Reveal>
+
+            {languages.length > 0 && (
+              <Reveal delay={0.2}>
+                <div className="glass rounded-2xl p-7 sm:p-8">
+                  <h3 className="text-fg text-xl font-semibold">Languages</h3>
+                  <p className="mt-2 text-sm text-slate-400">Self-assessed, as on my CV.</p>
+
+                  <table className="mt-6 w-full text-left text-sm">
+                    <thead>
+                      <tr className="text-xs tracking-wider text-slate-500 uppercase">
+                        <th scope="col" className="pb-3 font-medium">
+                          Language
+                        </th>
+                        <th scope="col" className="pb-3 font-medium">
+                          Read
+                        </th>
+                        <th scope="col" className="pb-3 font-medium">
+                          Write
+                        </th>
+                        <th scope="col" className="pb-3 font-medium">
+                          Speak
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-line divide-y">
+                      {languages.map((l) => (
+                        <tr key={l.language}>
+                          <th scope="row" className="text-fg py-3 font-medium">
+                            {l.language}
+                          </th>
+                          <td className="py-3 text-slate-400">{l.reading}</td>
+                          <td className="py-3 text-slate-400">{l.writing}</td>
+                          <td className="py-3 text-slate-400">{l.speaking}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </Reveal>
+            )}
           </div>
         </div>
 

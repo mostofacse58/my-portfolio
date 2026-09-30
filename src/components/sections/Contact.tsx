@@ -1,4 +1,4 @@
-import { FaEnvelope, FaGlobe, FaLinkedinIn, FaLocationDot, FaPhone } from 'react-icons/fa6';
+import { FaEnvelope, FaGlobe, FaLinkedinIn, FaLocationDot, FaPhone, FaWhatsapp } from 'react-icons/fa6';
 import ContactForm from '@/components/sections/ContactForm';
 import Reveal from '@/components/ui/Reveal';
 import ResumeButton from '@/components/ui/ResumeButton';
@@ -22,6 +22,13 @@ const channels = [
     href: `tel:${profile.phoneIntl}`,
     icon: FaPhone,
     hint: 'Direct line, Bangladesh time',
+  },
+  {
+    label: 'WhatsApp',
+    value: profile.phone,
+    href: profile.whatsapp,
+    icon: FaWhatsapp,
+    hint: 'Quickest for a short message',
   },
   {
     label: 'LinkedIn',
@@ -51,7 +58,7 @@ export default function Contact() {
     <section id="contact" className="relative py-24 sm:py-28">
       <div className="container-page">
         <SectionHeading
-          index="06"
+          index="07"
           eyebrow="Contact"
           title="Let's talk"
           description="Hiring, contracting, or want a second opinion on an ERP architecture? Pick whichever channel suits you."
