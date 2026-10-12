@@ -9,8 +9,9 @@ import type { ExperienceItem } from '@/types';
  *  This replaces the earlier three-role timeline, which was written from his
  *  public portfolio at a point when no employer before Ventura was named.
  *
- *  Two roles run concurrently from 2021 — the CV marks both "Continuing", so
- *  both carry `current: true`. The ERP delivery detail on the Ventura entry
+ *  Constant Ads ran alongside Ventura from Jun 2021 and ended on 31 Jan 2025
+ *  (Golam confirmed the end date; the CV marked it "Continuing"), so only the
+ *  Ventura role carries `current: true`. The ERP delivery detail on the Ventura entry
  *  (Epicor, the 18-module suite, MaatDrive) comes from his portfolio and is
  *  kept because it is the same employer and the same period.
  *
@@ -20,18 +21,6 @@ import type { ExperienceItem } from '@/types';
  * ──────────────────────────────────────────────────────────────────────────── */
 
 export const experiences: ExperienceItem[] = [
-  {
-    id: 'constant-ads-sr-swe',
-    role: 'Sr. Software Engineer',
-    company: 'Constant Ads',
-    location: 'Austria',
-    period: 'Jun 2021 — Present',
-    duration: '5.3 yrs',
-    current: true,
-    summary:
-      'Back-end development and application logic in PHP — Laravel and CodeIgniter. I shape the Laravel project structure, set the conventions the team builds against, run code reviews and share the approach with other developers across both internal and client-facing projects.',
-    projects: ['Laravel', 'CodeIgniter', 'Vue.js', 'React.js', 'jQuery & Ajax', 'Bootstrap'],
-  },
   {
     id: 'ventura-sr-officer',
     role: 'Sr. Officer — Software & ERP',
@@ -50,6 +39,17 @@ export const experiences: ExperienceItem[] = [
       'Laravel & Vue.js',
       'React / Node.js / MongoDB',
     ],
+  },
+  {
+    id: 'constant-ads-sr-swe',
+    role: 'Sr. Software Engineer',
+    company: 'Constant Ads',
+    location: 'Austria',
+    period: 'Jun 2021 — Jan 2025',
+    duration: '3.7 yrs',
+    summary:
+      'Back-end development and application logic in PHP — Laravel and CodeIgniter. I shaped the Laravel project structure, set the conventions the team built against, ran code reviews and shared the approach with other developers across both internal and client-facing projects.',
+    projects: ['Laravel', 'CodeIgniter', 'Vue.js', 'React.js', 'jQuery & Ajax', 'Bootstrap'],
   },
   {
     id: 'ventura-officer',

@@ -1,0 +1,290 @@
+<!doctype html>
+<!--
+  2-page CV source. Content mirrors src/data/ — update both together.
+  Render (from the repo root):
+    chrome --headless=new --no-pdf-header-footer --print-to-pdf=public/resume/Golam-Mostofa-CV.pdf scripts/cv/cv.html
+  Must stay exactly 2 pages.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Golam Mostofa — CV</title>
+<style>
+  @font-face { font-family: 'Sora'; src: url('../../node_modules/@fontsource-variable/sora/files/sora-latin-wght-normal.woff2') format('woff2'); font-weight: 100 800; }
+  @font-face { font-family: 'Jakarta'; src: url('../../node_modules/@fontsource-variable/plus-jakarta-sans/files/plus-jakarta-sans-latin-wght-normal.woff2') format('woff2'); font-weight: 200 800; }
+  @page { size: A4; margin: 0; }
+  :root {
+    --ink: #10201a; --body: #34433d; --muted: #6b7a74; --line: #dfe7e3;
+    --brand: #0b7a55; --brand-soft: #e7f4ee; --side: #0f2a21; --side-ink: #e8f2ee; --side-muted: #9fb8ae;
+    --gold: #c9962b;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #fff; }
+  body { font-family: 'Jakarta', 'Segoe UI', sans-serif; color: var(--body); font-size: 8.9pt; line-height: 1.42;
+         -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .page { width: 210mm; height: 297mm; display: grid; grid-template-columns: 64mm 1fr; overflow: hidden;
+          page-break-after: always; break-after: page; position: relative; }
+  .page:last-child { page-break-after: auto; break-after: auto; }
+  aside { background: var(--side); color: var(--side-ink); padding: 11mm 7mm 10mm 8mm; }
+  main { padding: 11mm 10mm 10mm 9mm; }
+  h1 { font-family: 'Sora', sans-serif; font-size: 23pt; line-height: 1.05; color: var(--ink); letter-spacing: -0.02em; font-weight: 700; }
+  .role { font-family: 'Sora', sans-serif; color: var(--brand); font-weight: 600; font-size: 10.6pt; margin-top: 2.2mm; }
+  .stack { color: var(--muted); font-size: 8.4pt; margin-top: 1mm; }
+  h2 { font-family: 'Sora', sans-serif; font-size: 9pt; letter-spacing: 0.16em; text-transform: uppercase; color: var(--brand);
+       font-weight: 700; display: flex; align-items: center; gap: 2.5mm; margin: 5.2mm 0 2.6mm; }
+  h2::after { content: ''; flex: 1; height: 0.3mm; background: var(--line); }
+  aside h2 { color: var(--gold); margin-top: 6mm; }
+  aside h2::after { background: rgba(255,255,255,0.14); }
+  aside h2:first-child { margin-top: 0; }
+  .summary { color: var(--body); font-size: 9.1pt; line-height: 1.5; }
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2mm; margin-top: 4mm; }
+  .stat { border: 0.3mm solid var(--line); border-radius: 2mm; padding: 2.2mm 2mm; text-align: center; background: #fafcfb; }
+  .stat b { display: block; font-family: 'Sora', sans-serif; font-size: 13.5pt; color: var(--brand); line-height: 1.1; }
+  .stat span { font-size: 7pt; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+  .job { margin-bottom: 3.4mm; }
+  .job-head { display: flex; justify-content: space-between; align-items: baseline; gap: 3mm; }
+  .job-title { font-family: 'Sora', sans-serif; font-weight: 700; color: var(--ink); font-size: 10pt; }
+  .dates { font-size: 7.9pt; font-weight: 600; color: var(--brand); white-space: nowrap; background: var(--brand-soft);
+           padding: 0.5mm 2mm; border-radius: 5mm; }
+  .org { color: var(--muted); font-size: 8.4pt; margin: 0.4mm 0 1.4mm; }
+  .org b { color: var(--body); font-weight: 600; }
+  ul.b { list-style: none; }
+  ul.b li { position: relative; padding-left: 3.6mm; margin-bottom: 0.9mm; }
+  ul.b li::before { content: ''; position: absolute; left: 0.4mm; top: 1.75mm; width: 1.3mm; height: 1.3mm; border-radius: 50%; background: var(--brand); }
+  ul.b li b { color: var(--ink); font-weight: 650; }
+  .tags { display: flex; flex-wrap: wrap; gap: 1.2mm; margin-top: 1.4mm; }
+  .tag { font-size: 7.2pt; border: 0.3mm solid var(--line); border-radius: 5mm; padding: 0.3mm 2mm; color: var(--body); background: #fff; }
+  /* sidebar */
+  .contact { list-style: none; }
+  .contact li { display: grid; grid-template-columns: 4.5mm 1fr; gap: 1.6mm; align-items: start; margin-bottom: 1.9mm; font-size: 8pt; word-break: break-word; }
+  .contact svg { width: 3.4mm; height: 3.4mm; fill: var(--gold); margin-top: 0.3mm; }
+  .contact a { color: var(--side-ink); text-decoration: none; }
+  .photo { width: 30mm; height: 30mm; border-radius: 50%; object-fit: cover; border: 0.8mm solid rgba(201,150,43,0.8); display: block; margin: 0 auto 5mm; }
+  .sk { margin-bottom: 2.6mm; }
+  .sk h3 { font-size: 7.6pt; font-weight: 700; color: var(--side-ink); margin-bottom: 1.1mm; letter-spacing: 0.02em; }
+  .chips { display: flex; flex-wrap: wrap; gap: 1mm; }
+  .chip { font-size: 7.1pt; padding: 0.35mm 1.7mm; border-radius: 4mm; background: rgba(255,255,255,0.08); color: var(--side-ink); border: 0.25mm solid rgba(255,255,255,0.12); }
+  .chip.hot { background: rgba(201,150,43,0.2); border-color: rgba(201,150,43,0.55); }
+  .side-list { list-style: none; }
+  .side-list li { font-size: 7.9pt; margin-bottom: 1.7mm; line-height: 1.35; }
+  .side-list li small { display: block; color: var(--side-muted); font-size: 7.1pt; }
+  .side-p { font-size: 7.9pt; color: var(--side-muted); }
+  /* projects */
+  .proj { border-left: 0.7mm solid var(--brand); padding: 0.4mm 0 0.4mm 3mm; margin-bottom: 3.2mm; }
+  .proj-head { display: flex; justify-content: space-between; gap: 3mm; align-items: baseline; }
+  .proj-name { font-family: 'Sora', sans-serif; font-weight: 700; color: var(--ink); font-size: 9.4pt; }
+  .proj-role { font-size: 7.5pt; color: var(--muted); white-space: nowrap; }
+  .proj p { margin-top: 0.6mm; }
+  .proj .stackline { font-size: 7.6pt; color: var(--brand); margin-top: 0.8mm; font-weight: 600; }
+  .edu { display: flex; justify-content: space-between; align-items: flex-start; gap: 3mm; }
+  .cert-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.6mm 4mm; }
+  .cert { font-size: 8pt; display: flex; gap: 1.8mm; align-items: baseline; }
+  .cert::before { content: '✓'; color: var(--brand); font-weight: 800; }
+  .cert small { color: var(--muted); }
+  .foot { position: absolute; bottom: 5mm; right: 10mm; font-size: 7pt; color: var(--muted); }
+  .p2-name { font-family: 'Sora', sans-serif; font-weight: 700; color: var(--ink); font-size: 12pt; }
+</style>
+</head>
+<body>
+
+<!-- ═════════════════════════ PAGE 1 ═════════════════════════ -->
+<section class="page">
+  <aside>
+    <img class="photo" src="../../public/images/profile.jpg" alt="">
+    <h2>Contact</h2>
+    <ul class="contact">
+      <li><svg viewBox="0 0 24 24"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.6a1 1 0 0 1-.25 1z"/></svg><span>+880 1723-695251<br><span style="color:var(--side-muted)">Phone &amp; WhatsApp</span></span></li>
+      <li><svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5z"/></svg><a href="mailto:golam.mostofa58@gmail.com">golam.mostofa58@gmail.com</a></li>
+      <li><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg><span>Rangpur, Bangladesh<br><span style="color:var(--side-muted)">Open to remote</span></span></li>
+      <li><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm6.9 6h-2.95a15.7 15.7 0 0 0-1.38-3.56A8 8 0 0 1 18.9 8zM12 4.04A14 14 0 0 1 13.9 8h-3.8A14 14 0 0 1 12 4.04zM4.26 14a8.2 8.2 0 0 1 0-4h3.38a16.5 16.5 0 0 0 0 4zm.84 2h2.95a15.7 15.7 0 0 0 1.38 3.56A8 8 0 0 1 5.1 16zm2.95-8H5.1a8 8 0 0 1 4.33-3.56A15.7 15.7 0 0 0 8.05 8zM12 19.96A14 14 0 0 1 10.1 16h3.8A14 14 0 0 1 12 19.96zM14.34 14H9.66a14.7 14.7 0 0 1 0-4h4.68a14.7 14.7 0 0 1 0 4zm.25 5.56A15.7 15.7 0 0 0 15.95 16h2.95a8 8 0 0 1-4.31 3.56zM16.36 14a16.5 16.5 0 0 0 0-4h3.38a8.2 8.2 0 0 1 0 4z"/></svg><a href="https://golammostofa.vercel.app">golammostofa.vercel.app</a></li>
+      <li><svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05a3.74 3.74 0 0 1 3.37-1.85c3.6 0 4.27 2.37 4.27 5.46zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56z"/></svg><a href="https://www.linkedin.com/in/golammostofa58/">in/golammostofa58</a></li>
+      <li><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.3 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85v2.75c0 .27.18.58.69.48A10 10 0 0 0 12 2z"/></svg><a href="https://github.com/mostofacse58">github.com/mostofacse58</a></li>
+      <li><svg viewBox="0 0 24 24"><path d="M13.5 2 6 9.6a3.3 3.3 0 0 0 0 4.7l4 4a3.3 3.3 0 0 0 4.7 0l2.2-2.2-1.4-1.4-2.2 2.2a1.3 1.3 0 0 1-1.9 0l-4-4a1.3 1.3 0 0 1 0-1.9L14.9 3.4zM10 12h10v2H10z"/></svg><a href="https://leetcode.com/u/mostofacse58/">leetcode/mostofacse58</a></li>
+    </ul>
+
+    <h2>Core Skills</h2>
+    <div class="sk"><h3>Backend</h3><div class="chips">
+      <span class="chip hot">ASP.NET Core</span><span class="chip hot">C#</span><span class="chip">Web API</span><span class="chip">Dapper</span><span class="chip">EF Core</span><span class="chip hot">Laravel</span><span class="chip">CodeIgniter</span><span class="chip">Node.js / Express</span><span class="chip hot">REST API design</span></div></div>
+    <div class="sk"><h3>Frontend</h3><div class="chips">
+      <span class="chip hot">Next.js</span><span class="chip hot">React</span><span class="chip">TypeScript</span><span class="chip">Vue.js</span><span class="chip">Tailwind CSS</span><span class="chip">Bootstrap</span><span class="chip">jQuery / AJAX</span></div></div>
+    <div class="sk"><h3>Databases</h3><div class="chips">
+      <span class="chip hot">SQL Server / T-SQL</span><span class="chip">Stored procs &amp; tuning</span><span class="chip">MySQL</span><span class="chip">PostgreSQL</span><span class="chip">MongoDB</span></div></div>
+    <div class="sk"><h3>ERP &amp; Domain</h3><div class="chips">
+      <span class="chip hot">ERP architecture</span><span class="chip hot">Epicor Kinetic (BAQ / BPM)</span><span class="chip">HRMS &amp; Payroll</span><span class="chip">Production / MES</span><span class="chip">Inventory &amp; Assets</span><span class="chip">Finance &amp; Costing</span><span class="chip">Data migration</span></div></div>
+    <div class="sk"><h3>Reporting &amp; BI</h3><div class="chips">
+      <span class="chip hot">Power BI</span><span class="chip">SSRS / RDLC</span><span class="chip">ECharts</span><span class="chip">EPPlus</span></div></div>
+    <div class="sk"><h3>AI &amp; Automation</h3><div class="chips">
+      <span class="chip hot">AI agents &amp; workflows</span><span class="chip">Prompt engineering</span><span class="chip">LangChain · RAG</span><span class="chip">n8n</span></div></div>
+    <div class="sk"><h3>Tools &amp; Architecture</h3><div class="chips">
+      <span class="chip">Git &amp; GitHub</span><span class="chip">Postman</span><span class="chip">Docker</span><span class="chip">Vercel</span><span class="chip">Multi-tenant SaaS</span><span class="chip">N-tier design</span></div></div>
+  </aside>
+
+  <main>
+    <h1>Golam Mostofa</h1>
+    <div class="role">Senior Software Engineer · ERP Architect</div>
+    <div class="stack">Full-stack: ASP.NET Core · Laravel · Next.js · SQL Server</div>
+
+    <h2>Profile</h2>
+    <p class="summary">
+      Senior Software Engineer and ERP Architect with <b>11+ years</b> building enterprise systems for leather, textile,
+      energy and government operations. I design and ship ERP platforms end to end — HRMS &amp; Payroll, Production/MES,
+      Inventory, Finance &amp; Costing — on ASP.NET Core, Laravel, Next.js and SQL Server. I led an <b>Epicor Kinetic ERP
+      implementation</b>, delivered an <b>18-module custom ERP suite</b> that is live in production, and built
+      <b>MaatDrive</b>, a multi-tenant SaaS for the German market. Now extending that into AI agents and workflow automation.
+    </p>
+
+    <div class="stats">
+      <div class="stat"><b>11+</b><span>Years in ERP</span></div>
+      <div class="stat"><b>18</b><span>ERP modules live</span></div>
+      <div class="stat"><b>641</b><span>LeetCode solved</span></div>
+      <div class="stat"><b>15</b><span>Verified certs</span></div>
+    </div>
+
+    <h2>Experience</h2>
+
+    <div class="job">
+      <div class="job-head"><div class="job-title">Sr. Officer — Software &amp; ERP</div><div class="dates">Apr 2021 — Present</div></div>
+      <div class="org"><b>Ventura Leatherware Mfy (BD) Ltd.</b> · Uttara EPZ, Rangpur · Leather goods manufacturing</div>
+      <ul class="b">
+        <li>Lead <b>ERP architecture and full-cycle development</b> for the plant — requirements through design, build, rollout and support.</li>
+        <li>Led the <b>Epicor Kinetic ERP implementation</b>: customisation with BAQ/BPM, module setup, data migration and user training.</li>
+        <li>Delivered an <b>18-module custom ERP suite</b> — Inventory, Assets, Accounts, TPM, MES, Production, Internal Audit, Gate Pass, eSignature and more — <b>all live</b>.</li>
+        <li>Built <b>VLM Core</b>, a live production dashboard that <b>replaced 60+ minutes of daily Excel reporting</b>.</li>
+        <li>Built in-house platforms on the same API layer: an <b>Android MDM</b> system, the <b>VOS Apps</b> employee super-app (11+ services) and a <b>biometric ESS kiosk</b>.</li>
+        <li>Designed the <b>RESTful API layer</b> (ASP.NET Core, Laravel) and the SQL Server data model behind them.</li>
+      </ul>
+      <div class="tags"><span class="tag">ASP.NET Core</span><span class="tag">Laravel</span><span class="tag">Vue.js</span><span class="tag">React</span><span class="tag">Node.js</span><span class="tag">SQL Server</span><span class="tag">Epicor</span></div>
+    </div>
+
+    <div class="job">
+      <div class="job-head"><div class="job-title">Sr. Software Engineer</div><div class="dates">Jun 2021 — Jan 2025</div></div>
+      <div class="org"><b>Constant Ads</b> · Austria (remote)</div>
+      <ul class="b">
+        <li>Back-end development and application logic in <b>PHP Laravel and CodeIgniter</b> for internal and client-facing products.</li>
+        <li>Set the <b>Laravel project structure and team conventions</b>, ran code reviews and mentored other developers on the approach.</li>
+        <li>Front-end delivery across Vue.js, React, jQuery/AJAX and Bootstrap.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-head"><div class="job-title">Officer — Software Development</div><div class="dates">Jul 2017 — Apr 2021</div></div>
+      <div class="org"><b>Ventura Leatherware Mfy (BD) Ltd.</b> · Nilphamari</div>
+      <ul class="b">
+        <li>Database design and development across the plant systems on <b>SQL Server and MySQL</b>, plus day-to-day database support.</li>
+        <li>Built the <b>management reporting layer</b>, including <b>Power BI</b> analysis used by the management team.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-head"><div class="job-title">Programmer</div><div class="dates">Jan 2015 — Jun 2017</div></div>
+      <div class="org"><b>Promiti Computer and Networks</b> · Dhanmondi, Dhaka</div>
+      <ul class="b">
+        <li>Analysis, database design, coding and client software implementation as a database engineer and programmer; web development.</li>
+      </ul>
+    </div>
+  </main>
+  <div class="foot">Golam Mostofa · CV · 1 / 2</div>
+</section>
+
+<!-- ═════════════════════════ PAGE 2 ═════════════════════════ -->
+<section class="page">
+  <aside>
+    <h2>Certifications</h2>
+    <ul class="side-list">
+      <li>SQL (Advanced)<small>HackerRank · Sep 2026</small></li>
+      <li>SQL (Intermediate)<small>HackerRank · Sep 2026</small></li>
+      <li>REST API (Intermediate)<small>HackerRank · Oct 2026</small></li>
+      <li>Problem Solving (Intermediate)<small>HackerRank · Sep 2026</small></li>
+      <li>Frontend Developer (React) — role cert<small>HackerRank · Sep 2026</small></li>
+      <li>React · C# · Python · Problem Solving (Basic)<small>HackerRank · 4 skill certificates · Oct 2026</small></li>
+      <li>Data Analysis with Python<small>freeCodeCamp · ~300 hrs · Sep 2026</small></li>
+      <li>AI Workflows &amp; Agents · GenAI &amp; Prompt Engineering · AI-Powered Communication<small>Grameenphone Academy · Sep 2026</small></li>
+    </ul>
+    <p class="side-p" style="margin-top:1mm">All verifiable — links at golammostofa.vercel.app/#certificates</p>
+
+    <h2>Training</h2>
+    <ul class="side-list">
+      <li>AI Agent Mastery: Build, Automate &amp; Scale<small>Hablu Programmer · 2026 · in progress</small></li>
+      <li>Next Level AI-Driven Software Engineering<small>Programming Hero · 2026</small></li>
+      <li>AI Powered Complete Web Development<small>Programming Hero · 2026</small></li>
+      <li>Full Stack ASP.NET Core MVC<small>Dev Skill · 2025</small></li>
+      <li>Android Mobile Application Development<small>BITM</small></li>
+    </ul>
+
+    <h2>Problem Solving</h2>
+    <p class="side-p" style="color:var(--side-ink)"><b style="font-size:12pt;color:#fff">641</b> LeetCode problems</p>
+    <p class="side-p">264 Easy · 316 Medium · 61 Hard<br>Strongest: arrays, hash tables, DP, DFS/BFS</p>
+
+    <h2>Languages</h2>
+    <ul class="side-list">
+      <li>Bangla<small>Native — reading, writing, speaking</small></li>
+      <li>English<small>Professional — strong reading &amp; writing</small></li>
+    </ul>
+  </aside>
+
+  <main>
+    <div class="p2-name">Golam Mostofa <span style="font-weight:500;color:var(--muted);font-size:9pt">· Senior Software Engineer · ERP Architect</span></div>
+
+    <h2 style="margin-top:4mm">Selected Projects</h2>
+
+    <div class="proj">
+      <div class="proj-head"><div class="proj-name">MaatDrive — Business Management SaaS</div><div class="proj-role">Architect &amp; Lead Developer · Live</div></div>
+      <p>Multi-tenant cloud SaaS for trade, crafts and service companies in <b>Germany</b>: customers, inventory, invoicing, projects, time tracking and accounting preparation in one product. <span style="color:var(--muted)">maatdrive.com</span></p>
+      <div class="stackline">Laravel · Next.js · React · MySQL · REST API · Multi-tenant SaaS</div>
+    </div>
+
+    <div class="proj">
+      <div class="proj-head"><div class="proj-name">Leather Manufacturing ERP</div><div class="proj-role">ERP Architect &amp; Lead Developer · In production</div></div>
+      <p>The ERP a leather goods factory runs on — HRMS &amp; payroll for a large shift-based workforce, production/MES, inventory, gate movements, finance and export costing — behind one REST API, with SSRS and Power BI reporting.</p>
+      <div class="stackline">ASP.NET Core · C# · Dapper · SQL Server · Laravel · Vue.js · Power BI</div>
+    </div>
+
+    <div class="proj">
+      <div class="proj-head"><div class="proj-name">Epicor Kinetic ERP — Implementation</div><div class="proj-role">Implementation Lead</div></div>
+      <p>Full enterprise rollout of a Gartner Magic Quadrant ERP in a manufacturing company: BAQ/BPM customisation, module configuration, data migration and end-user training.</p>
+      <div class="stackline">Epicor Kinetic · BAQ / BPM · SQL Server · Data migration</div>
+    </div>
+
+    <div class="proj">
+      <div class="proj-head"><div class="proj-name">VLM Core — Production Dashboard</div><div class="proj-role">Architect &amp; Lead Developer · 2024 — 2025</div></div>
+      <p>Desktop dashboard over live ERP production data that <b>replaced 60+ minutes of daily Excel reporting</b> with real-time factory KPIs.</p>
+      <div class="stackline">Electron · React 19 · SQL Server · Recharts</div>
+    </div>
+
+    <div class="proj">
+      <div class="proj-head"><div class="proj-name">MDM — Android Device Management Platform</div><div class="proj-role">Architect &amp; Lead Developer · In production</div></div>
+      <p>Provision, lock down and remotely control company-owned Android devices: a Kotlin Device Owner agent, a REST + WebSocket server and a Next.js admin console, kept in sync by a contract-first API.</p>
+      <div class="stackline">Kotlin · Node.js · Express · TypeScript · Next.js · WebSocket</div>
+    </div>
+
+    <div class="proj">
+      <div class="proj-head"><div class="proj-name">VOS Apps — Employee Super-App</div><div class="proj-role">Architect &amp; Lead Developer · In production</div></div>
+      <p>One intranet-secured Android app delivering <b>11+ enterprise services</b> to the whole workforce, with role-based access and data that never leaves the company network.</p>
+      <div class="stackline">Android SDK · Java · REST API · SQL Server</div>
+    </div>
+
+    <div class="proj">
+      <div class="proj-head"><div class="proj-name">Hadi Real Estate ERP</div><div class="proj-role">Architect &amp; Lead Developer · Client project</div></div>
+      <p>Bilingual (English / বাংলা) web platform running a land and property development business — projects and plots, bookings, flexible instalments, land registration, accounts, HR and a customer portal.</p>
+      <div class="stackline">Web · Cloud-hosted · Bilingual · Mobile-ready</div>
+    </div>
+
+    <h2>Education</h2>
+    <div class="edu">
+      <div><div class="job-title">B.Sc. in Computer Science &amp; Engineering</div>
+        <div class="org"><b>Pabna University of Science &amp; Technology</b> · CGPA 3.53 / 4.00</div></div>
+      <div class="dates">2010 — 2013</div>
+    </div>
+    <div class="org" style="margin-top:0.5mm">HSC — Shah Abdur Rouf College, GPA 3.90 / 5.00 (2008) · SSC — GPA 4.50 / 5.00 (2006)</div>
+
+    <h2>Also</h2>
+    <ul class="b">
+      <li>Founder of <b>GTechSoft</b> — custom web applications, ERP systems and SaaS for clients across industries.</li>
+      <li>Strengths: analytical thinking and planning, clear written and verbal communication, attention to detail, prioritisation.</li>
+      <li>References available on request.</li>
+    </ul>
+  </main>
+  <div class="foot">Golam Mostofa · CV · 2 / 2</div>
+</section>
+</body>
+</html>

@@ -145,12 +145,11 @@ matching `<section>` the same `id`. The active-link observer is automatic.
 - [ ] Add the Consultant Management System (anjapex.com) from the CV's "Accomplishment" section as
       a project — it needs a 1200×750 cover before it can go in.
 - [ ] Replace the generated project covers with real screenshots where the client permits it.
-- [x] CV PDF generated at `public/resume/Golam-Mostofa-CV.pdf` (6 pages, laid out like the
-      reference resume: header, objective, academics, skills table, numbered training, employment
-      history with "Projects Contributed", eight detailed key projects, proficiencies, references).
-      `profile.resumeFile` points at it, so every Resume button is now a direct download.
-      It is built from `src/data/` by a generator kept in the session scratchpad — regenerate it
-      after editing projects, skills, education or experience, or the PDF drifts from the site.
+- [x] CV is now a **2-page** PDF at `public/resume/Golam-Mostofa-CV.pdf` — interviewers said the
+      old 6-page CV was too long. Source is `scripts/cv/cv.html` (render command in its header
+      comment); it must stay exactly 2 pages. `profile.resumeFile` points at it, so every Resume
+      button downloads it. Update it whenever experience, projects, certificates or skills change.
+      `public/resume/Golam-Mostofa-CV.docx` is the older long-form CV, kept for editing only.
 - [ ] Decide whether the CV should carry date of birth. The reference resume has one; it is left
       out here because the PDF is served publicly from `/public`, and CLAUDE.md rule 2 keeps DOB,
       religion, marital status and blood group off the public site.
