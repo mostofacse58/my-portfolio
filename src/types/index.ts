@@ -188,3 +188,17 @@ export type CertificateItem = {
   /** Downloadable copy under /public. Optional; the button is dropped without it. */
   file?: string;
 };
+
+/** Problem-solving stats from a public LeetCode profile. */
+export type LeetCodeStats = {
+  /** Total questions on LeetCode, per difficulty — the denominator for each bar. */
+  totals: { easy: number; medium: number; hard: number; all: number };
+  solved: { easy: number; medium: number; hard: number; all: number };
+  /** Global ranking. Null if LeetCode stops returning it. */
+  ranking: number | null;
+  /** Most-solved topics, highest first. */
+  topTopics: { name: string; solved: number }[];
+  languages: { name: string; solved: number }[];
+  /** ISO date the numbers were read. */
+  asOf: string;
+};

@@ -58,7 +58,7 @@ export default function Contact() {
     <section id="contact" className="relative py-24 sm:py-28">
       <div className="container-page">
         <SectionHeading
-          index="07"
+          index="08"
           eyebrow="Contact"
           title="Let's talk"
           description="Hiring, contracting, or want a second opinion on an ERP architecture? Pick whichever channel suits you."
