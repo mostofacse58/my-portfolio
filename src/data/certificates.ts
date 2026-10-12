@@ -76,6 +76,66 @@ export const certificates: CertificateItem[] = [
     image: '/certificates/hackerrank/sql-advanced.webp',
     file: '/certificates/hackerrank/sql-advanced.pdf',
   },
+  /* The four below come from verify links Golam supplied without the
+     certificate files. HackerRank's public page gives the title and syllabus
+     but no earned date and no downloadable image, so `issued`, `image` and
+     `file` are omitted and the card degrades. Drop the PDFs into
+     mostofa-portfolio/public/hackerrank/ and fill them in. The credential ID is
+     the verify-link ID in upper case, matching every HackerRank certificate above. */
+  {
+    id: 'hr-rest-api-intermediate',
+    title: 'REST API (Intermediate)',
+    issuer: 'HackerRank',
+    level: 'Skill certificate',
+    skills: ['Consuming REST APIs', 'Query parameters', 'Pagination'],
+    credentialId: '948031DCB108',
+    verifyUrl: 'https://www.hackerrank.com/certificates/948031dcb108',
+  },
+  {
+    id: 'hr-react-basic',
+    title: 'React (Basic)',
+    issuer: 'HackerRank',
+    level: 'Skill certificate',
+    skills: [
+      'Routing',
+      'Rendering elements',
+      'Component state',
+      'Event handling',
+      'Form validation',
+    ],
+    credentialId: '8CD353100B39',
+    verifyUrl: 'https://www.hackerrank.com/certificates/8cd353100b39',
+  },
+  {
+    id: 'hr-csharp-basic',
+    title: 'C# (Basic)',
+    issuer: 'HackerRank',
+    level: 'Skill certificate',
+    skills: [
+      'Types & variables',
+      'Basic OOP',
+      'Properties & indexers',
+      'Collections',
+      'Exception handling',
+    ],
+    credentialId: '18B86C2C89C6',
+    verifyUrl: 'https://www.hackerrank.com/certificates/18b86c2c89c6',
+  },
+  {
+    id: 'hr-python-basic',
+    title: 'Python (Basic)',
+    issuer: 'HackerRank',
+    level: 'Skill certificate',
+    skills: [
+      'Scalar types & operators',
+      'Control flow',
+      'Strings & collections',
+      'Modules',
+      'Classes',
+    ],
+    credentialId: 'F4AD05031A8D',
+    verifyUrl: 'https://www.hackerrank.com/certificates/f4ad05031a8d',
+  },
 
   /* ── freeCodeCamp ──────────────────────────────────────────────────────── */
   {

@@ -122,12 +122,7 @@ export type LanguageItem = {
 };
 
 export type ProjectCategory =
-  | 'ERP System'
-  | 'SaaS Product'
-  | 'Web App'
-  | 'Mobile App'
-  | 'Desktop App'
-  | 'Implementation';
+  'ERP System' | 'SaaS Product' | 'Web App' | 'Mobile App' | 'Desktop App' | 'Implementation';
 
 export type Project = {
   /** URL segment: /projects/<slug> */
@@ -176,18 +171,20 @@ export type CertificateItem = {
   issuer: string;
   /** Short qualifier shown as a chip, e.g. 'Skill certificate'. Optional. */
   level?: string;
-  /** Issue date exactly as printed on the certificate, e.g. '30 Sep 2026'. */
-  issued: string;
-  /** Machine-readable form of `issued` for <time dateTime>. */
-  issuedIso: string;
+  /** Issue date exactly as printed on the certificate, e.g. '30 Sep 2026'.
+   *  Omitted where the certificate file is not on hand — the date row drops it. */
+  issued?: string;
+  /** Machine-readable form of `issued` for <time dateTime>. Set with `issued`. */
+  issuedIso?: string;
   /** What the certificate covers, rendered as chips. */
   skills: string[];
   /** Certificate / credential number as printed. Optional. */
   credentialId?: string;
   /** Public verification page on the issuer's site. */
   verifyUrl: string;
-  /** Thumbnail under /public — 1200 px wide. */
-  image: string;
+  /** Thumbnail under /public — 1200 px wide. Omitted where the certificate
+   *  file is not on hand; the card shows a plain icon tile instead. */
+  image?: string;
   /** Downloadable copy under /public. Optional; the button is dropped without it. */
   file?: string;
 };

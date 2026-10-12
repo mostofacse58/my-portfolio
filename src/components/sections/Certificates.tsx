@@ -52,36 +52,56 @@ export default function Certificates() {
                   {group.items.map((cert) => (
                     <li key={cert.id}>
                       <article className="border-line bg-tint hover:border-brand-400/30 flex h-full flex-col overflow-hidden rounded-xl border transition-all hover:-translate-y-1">
-                        <a
-                          href={cert.verifyUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="focus-visible:outline-brand-400 relative block aspect-[16/10] bg-white focus-visible:outline-2 focus-visible:-outline-offset-2"
-                        >
-                          <Image
-                            src={cert.image}
-                            alt={`${cert.title} certificate from ${cert.issuer}, issued to Golam Mostofa`}
-                            fill
-                            sizes="(min-width: 1280px) 360px, (min-width: 768px) 45vw, 90vw"
-                            className="object-contain p-2"
-                          />
-                        </a>
+                        {cert.image ? (
+                          <a
+                            href={cert.verifyUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="focus-visible:outline-brand-400 relative block aspect-[16/10] bg-white focus-visible:outline-2 focus-visible:-outline-offset-2"
+                          >
+                            <Image
+                              src={cert.image}
+                              alt={`${cert.title} certificate from ${cert.issuer}, issued to Golam Mostofa`}
+                              fill
+                              sizes="(min-width: 1280px) 360px, (min-width: 768px) 45vw, 90vw"
+                              className="object-contain p-2"
+                            />
+                          </a>
+                        ) : (
+                          /* No certificate file on hand — a quiet tile, not a fake certificate.
+                             Decorative only; the verify button below carries the link. */
+                          <div
+                            aria-hidden
+                            className="from-brand-500/15 to-accent-500/15 border-line grid aspect-[16/10] place-items-center border-b bg-gradient-to-br"
+                          >
+                            <span className="flex flex-col items-center gap-3 px-6 text-center">
+                              <FaCircleCheck className="text-brand-400 h-8 w-8" />
+                              <span className="text-fg text-sm font-semibold">{cert.title}</span>
+                            </span>
+                          </div>
+                        )}
 
                         <div className="flex flex-1 flex-col p-5">
                           <h3 className="text-fg text-base leading-snug font-semibold">
                             {cert.title}
                           </h3>
-                          {cert.level && <p className="text-brand-300 mt-1 text-sm">{cert.level}</p>}
+                          {cert.level && (
+                            <p className="text-brand-300 mt-1 text-sm">{cert.level}</p>
+                          )}
 
-                          <p className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-slate-500">
-                            <span className="flex items-center gap-1.5">
-                              <FaCalendar className="h-3 w-3" aria-hidden />
-                              <time dateTime={cert.issuedIso}>{cert.issued}</time>
-                            </span>
-                            {cert.credentialId && (
-                              <span className="font-mono">ID {cert.credentialId}</span>
-                            )}
-                          </p>
+                          {(cert.issued || cert.credentialId) && (
+                            <p className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-slate-500">
+                              {cert.issued && (
+                                <span className="flex items-center gap-1.5">
+                                  <FaCalendar className="h-3 w-3" aria-hidden />
+                                  <time dateTime={cert.issuedIso}>{cert.issued}</time>
+                                </span>
+                              )}
+                              {cert.credentialId && (
+                                <span className="font-mono">ID {cert.credentialId}</span>
+                              )}
+                            </p>
+                          )}
 
                           {cert.skills.length > 0 && (
                             <ul className="mt-4 flex flex-wrap gap-1.5">
