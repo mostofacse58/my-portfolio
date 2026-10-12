@@ -136,6 +136,15 @@ export const certificates: CertificateItem[] = [
     credentialId: 'F4AD05031A8D',
     verifyUrl: 'https://www.hackerrank.com/certificates/f4ad05031a8d',
   },
+  {
+    id: 'hr-problem-solving-basic',
+    title: 'Problem Solving (Basic)',
+    issuer: 'HackerRank',
+    level: 'Skill certificate',
+    skills: ['Arrays', 'Strings', 'Sorting', 'Searching'],
+    credentialId: '0C580CF3DBC3',
+    verifyUrl: 'https://www.hackerrank.com/certificates/0c580cf3dbc3',
+  },
 
   /* ── freeCodeCamp ──────────────────────────────────────────────────────── */
   {
