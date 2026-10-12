@@ -149,7 +149,9 @@ matching `<section>` the same `id`. The active-link observer is automatic.
       old 6-page CV was too long. Source is `scripts/cv/cv.html` (render command in its header
       comment); it must stay exactly 2 pages. `profile.resumeFile` points at it, so every Resume
       button downloads it. Update it whenever experience, projects, certificates or skills change.
-      `public/resume/Golam-Mostofa-CV.docx` is the older long-form CV, kept for editing only.
+      The old long-form CV is kept too, at Golam asked: `public/resume/Golam-Mostofa-CV-Detailed.pdf`
+      (restored from git, still says Constant Ads "Running") and its editable source
+      `Golam-Mostofa-CV.docx` (date already fixed). Re-save the DOCX as PDF from Word to refresh it.
 - [ ] Decide whether the CV should carry date of birth. The reference resume has one; it is left
       out here because the PDF is served publicly from `/public`, and CLAUDE.md rule 2 keeps DOB,
       religion, marital status and blood group off the public site.
