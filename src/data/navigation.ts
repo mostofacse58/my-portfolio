@@ -1,4 +1,4 @@
-import { FaFacebookF, FaGithub, FaGlobe, FaLinkedinIn, FaWhatsapp } from 'react-icons/fa6';
+import { FaCode, FaFacebookF, FaGithub, FaGlobe, FaLinkedinIn, FaWhatsapp } from 'react-icons/fa6';
 import type { NavLink, SocialLink } from '@/types';
 
 export const navLinks: NavLink[] = [
@@ -39,6 +39,12 @@ export const socialLinks: SocialLink[] = [
     href: 'https://wa.me/8801723695251',
     icon: FaWhatsapp,
     hoverClass: 'hover:border-[#25D366] hover:text-[#25D366]',
+  },
+  {
+    label: 'LeetCode',
+    href: 'https://leetcode.com/u/mostofacse58/',
+    icon: FaCode,
+    hoverClass: 'hover:border-amber-400/60 hover:text-amber-400',
   },
   {
     label: 'GTechSoft',

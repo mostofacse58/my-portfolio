@@ -55,11 +55,11 @@ export default function Education() {
             <Reveal className="mb-8">
               <h3 className="text-fg flex items-center gap-3 text-xl font-semibold tracking-tight sm:text-2xl">
                 <FaCertificate className="text-accent-400 h-5 w-5" aria-hidden />
-                Certifications &amp; training
+                Training &amp; courses
               </h3>
               <p className="mt-3 max-w-2xl text-sm leading-relaxed text-slate-400">
                 Structured courses taken alongside full-time delivery work, to keep the stack
-                current rather than to collect certificates.
+                current. Verified certificates are listed in the next section.
               </p>
             </Reveal>
 
@@ -75,7 +75,9 @@ export default function Education() {
                       {item.title}
                     </h4>
 
-                    {item.provider && <p className="text-brand-300 mt-2 text-sm">{item.provider}</p>}
+                    {item.provider && (
+                      <p className="text-brand-300 mt-2 text-sm">{item.provider}</p>
+                    )}
 
                     <div className="mt-4 flex flex-wrap items-center gap-2">
                       {item.inProgress ? (

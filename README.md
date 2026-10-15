@@ -18,8 +18,8 @@ npm run dev                    # http://localhost:3002
 
 ## Scripts
 
-| Command             | What it does                                    |
-| ------------------- | ----------------------------------------------- |
+| Command             | What it does                                     |
+| ------------------- | ------------------------------------------------ |
 | `npm run dev`       | Dev server on port 3002                          |
 | `npm run build`     | Production build                                 |
 | `npm run start`     | Serve the production build                       |
@@ -32,15 +32,15 @@ npm run dev                    # http://localhost:3002
 
 **All copy lives in `src/data/`.** Components never hard-code text.
 
-| File            | Holds                                                      |
-| --------------- | ---------------------------------------------------------- |
+| File            | Holds                                                       |
+| --------------- | ----------------------------------------------------------- |
 | `profile.ts`    | Name, titles, tagline, contact, stats, About copy           |
 | `navigation.ts` | Nav links and social profiles                               |
-| `skills.ts`     | The eight proficiency bars and the technology chip groups    |
-| `services.ts`   | "What I do" blocks and the domain-expertise list             |
+| `skills.ts`     | The eight proficiency bars and the technology chip groups   |
+| `services.ts`   | "What I do" blocks and the domain-expertise list            |
 | `experience.ts` | The three roles                                             |
 | `education.ts`  | Degrees                                                     |
-| `projects.ts`   | Every project — card, detail page, sitemap all read from it  |
+| `projects.ts`   | Every project — card, detail page, sitemap all read from it |
 
 ### The one rule that matters
 
@@ -48,9 +48,10 @@ Every fact in `src/data/` traces back to something Golam published — his portf
 `mostofacse58.github.io/mostofacse58` or his GitHub profile. Each data file opens with a comment
 naming its source. **Where something is not published, the field is omitted rather than filled in.**
 
-That is why there is no phone number, no GPA, no certifications section and no institution names:
-they are not public, so they are absent, and the components render without them. If you add
-content, keep that discipline — an invented line on a portfolio becomes an awkward question in an
+Since then Golam has supplied his CV and his certificate files, so the phone number, results,
+institutions and a verified Certificates section are all on the site now — each traced to that
+source. Where a detail is still missing, the component renders without it. If you add content,
+keep that discipline — an invented line on a portfolio becomes an awkward question in an
 interview.
 
 ## Adding a project

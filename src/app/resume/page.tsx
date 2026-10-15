@@ -3,12 +3,15 @@ import Link from 'next/link';
 import { FaArrowLeft, FaEnvelope, FaGlobe, FaLocationDot, FaPhone } from 'react-icons/fa6';
 import PrintButton from '@/components/ui/PrintButton';
 import Reveal from '@/components/ui/Reveal';
+import { certificateGroups } from '@/data/certificates';
 import { education, training } from '@/data/education';
 import { experiences } from '@/data/experience';
 import { socialLinks } from '@/data/navigation';
 import { languages, profile } from '@/data/profile';
 import { featuredProjects } from '@/data/projects';
+import { leetcodeProfile } from '@/data/leetcode';
 import { coreSkills, techGroups } from '@/data/skills';
+import { getLeetCodeStats } from '@/lib/leetcode';
 
 export const metadata: Metadata = {
   title: 'Resume',
@@ -20,7 +23,9 @@ export const metadata: Metadata = {
  * site, so it can never drift out of step with the portfolio. `@media print`
  * in globals.css strips the nav, footer and this page's own chrome.
  */
-export default function ResumePage() {
+export default async function ResumePage() {
+  const leetcode = await getLeetCodeStats();
+
   return (
     <section className="py-32 sm:py-36 print:py-0">
       {/* The inner wrapper caps the measure — `container-page` already sets a
@@ -210,9 +215,66 @@ export default function ResumePage() {
             </ol>
           </ResumeSection>
 
-          {/* ── Certifications & training ──────────────────── */}
+          {/* ── Verified certificates ──────────────────────── */}
+          {certificateGroups.length > 0 && (
+            <ResumeSection title="Verified certificates">
+              <dl className="space-y-4">
+                {certificateGroups.map((group) => (
+                  <div key={group.issuer} className="print-break">
+                    <dt className="text-fg text-sm font-semibold">{group.issuer}</dt>
+                    <dd className="mt-1.5">
+                      <ul className="grid gap-x-8 gap-y-1 sm:grid-cols-2">
+                        {group.items.map((cert) => (
+                          <li
+                            key={cert.id}
+                            className="flex items-baseline justify-between gap-3 text-sm"
+                          >
+                            <a
+                              href={cert.verifyUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="hover:text-brand-300 text-slate-300 transition-colors"
+                            >
+                              {cert.title}
+                            </a>
+                            {cert.issued && (
+                              <time
+                                dateTime={cert.issuedIso}
+                                className="shrink-0 font-mono text-xs text-slate-500"
+                              >
+                                {cert.issued}
+                              </time>
+                            )}
+                          </li>
+                        ))}
+                      </ul>
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+            </ResumeSection>
+          )}
+
+          {/* ── Problem solving ────────────────────────────── */}
+          <ResumeSection title="Problem solving">
+            <p className="text-sm leading-relaxed text-slate-400">
+              <span className="text-fg font-semibold">{leetcode.solved.all}</span> LeetCode problems
+              solved — {leetcode.solved.easy} easy, {leetcode.solved.medium} medium,{' '}
+              {leetcode.solved.hard} hard. Profile:{' '}
+              <a
+                href={leetcodeProfile.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-brand-300 hover:text-brand-200 transition-colors"
+              >
+                leetcode.com/u/{leetcodeProfile.username}
+              </a>
+            </p>
+          </ResumeSection>
+
+          {/* ── Training ───────────────────────────────────── */}
           {training.length > 0 && (
-            <ResumeSection title="Certifications & training">
+            <ResumeSection title="Training">
               <ol className="space-y-4">
                 {training.map((item) => (
                   <li key={item.id} className="print-break">
@@ -227,7 +289,9 @@ export default function ResumePage() {
                     {item.provider && (
                       <p className="text-brand-300 mt-1 text-sm">
                         {item.provider}
-                        {item.location && <span className="text-slate-500"> · {item.location}</span>}
+                        {item.location && (
+                          <span className="text-slate-500"> · {item.location}</span>
+                        )}
                       </p>
                     )}
                     {item.topics && item.topics.length > 0 && (
